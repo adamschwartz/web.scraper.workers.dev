@@ -4,6 +4,7 @@ Web Scraper makes it effortless to scrape websites. You provide a URL and CSS se
 
 - [Website](http://web.scraper.workers.dev)
 
+
 ## Examples
 
 ### Heading from example.com
@@ -50,6 +51,7 @@ Web Scraper makes it effortless to scrape websites. You provide a URL and CSS se
   }
 }
 ```
+
 
 ## API
 
@@ -118,6 +120,33 @@ This is because there is no space character between `</p>` and `<p>`.
 With `spaced` set to `true`, the result is:
 
 ```This is the first paragraph.This is another paragraph.```
+
+
+## Development
+
+Web Scraper is powered by [Cloudflare Workers](https://workers.cloudflare.com), heavilly utilizing [HTMLRewriter](https://developers.cloudflare.com/workers/reference/apis/html-rewriter/) for parsing the HTML and scraping the text.
+
+To develop Web Scraper locally, pull down the repo, and follow these steps:
+
+1. Installing the Workers CLI globally.
+
+```
+npm i @cloudflare/wrangler@1.4.0-rc.7 -g
+```
+
+2. Run the preview/watcher inside the repo:
+
+```
+wrangler preview --watch
+```
+
+This will open up the Workers preview experience so you can test and debug the site. The main source can be found in `index.js`. As you make changes you’ll see them live in the previewer.
+
+
+## Deploying
+
+Web Scraper is deployed automatically using a [Github Actions](https://github.com/features/actions) and the [Workers CLI](https://github.com/cloudflare/wrangler).
+
 
 ## Author
 
