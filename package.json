@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "Workers Web Scraper",
+  "name": "web-scraper",
   "version": "1.0.0",
   "description": "Web scraper built with Cloudflare Workers utilizing HTMLRewriter.",
   "main": "index.js",
