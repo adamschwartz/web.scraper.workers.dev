@@ -387,7 +387,7 @@ export default `<!doctype html>
 
         const booleans = ['pretty', 'spaced']
         booleans.forEach(b => {
-          if (data.get(b) === 'on') data.set('b', 'true') // TODO
+          if (data.get(b) === 'on') data.set(b, 'true')
         })
 
         const queryString = new URLSearchParams(data).toString()
