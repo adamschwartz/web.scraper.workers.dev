@@ -9,7 +9,7 @@ Web Scraper makes it effortless to scrape websites. You provide a URL and CSS se
 
 ### Heading from example.com
 
-[`https://web.scraper.workers.dev/?url=example.com&selector=h1`](https://web.scraper.workers.dev/?url=example.com&selector=h1)
+[web.scraper.workers.dev/?url=example.com&selector=h1](https://web.scraper.workers.dev/?url=example.com&selector=h1)
 
 ```JSON
 {"result":["Example Domain"]}
@@ -17,7 +17,7 @@ Web Scraper makes it effortless to scrape websites. You provide a URL and CSS se
 
 ### Profile details from github.com profile page
 
-[`https://web.scraper.workers.dev/?url=https://github.com/adamschwartz&selector=.vcard-fullname,.d-md-block+[itemprop=worksFor],.d-md-block+[itemprop=homeLocation]&pretty=true`](https://web.scraper.workers.dev/?url=https://github.com/adamschwartz&selector=.vcard-fullname,.d-md-block+[itemprop=worksFor],.d-md-block+[itemprop=homeLocation]&pretty=true)
+[web.scraper.workers.dev/?url=github.com/adamschwartz&selector=.vcard-fullname,.d-md-block+[itemprop=worksFor],.d-md-block+[itemprop=homeLocation]&pretty=true](web.scraper.workers.dev/?url=https://github.com/adamschwartz&selector=.vcard-fullname,.d-md-block+[itemprop=worksFor],.d-md-block+[itemprop=homeLocation]&pretty=true)
 
 ```JSON
 {
@@ -37,9 +37,9 @@ Web Scraper makes it effortless to scrape websites. You provide a URL and CSS se
 
 ### Random quote/author from quotes.net
 
-[`https://web.scraper.workers.dev/?url=https://www.quotes.net/random.php&selector=%23disp-quote-body,.author&pretty=true`](https://web.scraper.workers.dev/?url=https://www.quotes.net/random.php&selector=%23disp-quote-body,.author&pretty=true)
+[web.scraper.workers.dev/?url=quotes.net/random.php&selector=%23disp-quote-body,.author&pretty=true](https://web.scraper.workers.dev/?url=quotes.net/random.php&selector=%23disp-quote-body,.author&pretty=true)
 
-```
+```JSON
 {
   "result": {
     "#disp-quote-body": [
