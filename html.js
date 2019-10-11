@@ -256,6 +256,13 @@ export default `<!doctype html>
           display: inline;
         }
       }
+
+      .Dialog--content .Link {
+        --underline-size: 1px;
+        --underline-color: rgba(var(--accent-color-rgb), .7);
+        display: inline-block;
+        line-height: 1.1;
+      }
     </style>
   </head>
 
@@ -318,9 +325,9 @@ export default `<!doctype html>
         <h2 class="Dialog--title" id="dialog-title">About</h2>
 
         <div class="Dialog--content">
-          <p>Web Scraper makes it effortless to scrape websites. You provide a URL and selector and it will return you JSON containing the text contents of the matching elements.</p>
+          <p>Web Scraper makes it effortless to scrape websites. Just provide a URL and CSS selector and it will return JSON containing the text contents of the matching elements.</p>
 
-          <p>Built by <a class="Link" href="https://adamschwartz.co" target="_blank" rel="noopener">Adam Schwartz</a> using <a class="Link" href="https://workers.cloudflare.com" target="_blank" rel="noopener">Cloudflare Workers</a>.</p>
+          <p>Built by <a class="Link" href="https://adamschwartz.co" target="_blank" rel="noopener">Adam Schwartz</a> using <a class="Link" href="https://workers.cloudflare.com" target="_blank" rel="noopener">Cloudflare Workers</a>, open-source and available on <a class="Link" href="https://github.com/adamschwartz/web.scraper.workers.dev" target="_blank" rel="noopener">Github.</a></p>
         </div>
 
         <div class="Dialog--actions">
