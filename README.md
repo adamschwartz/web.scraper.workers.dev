@@ -109,7 +109,9 @@ Web Scraper makes it effortless to scrape websites. You provide a URL and CSS se
 
 Consider the following DOM structure:
 
-```<div><p>This is the first paragraph.</p><p>This is another paragraph.</p></div>```
+```
+<div><p>This is the first paragraph.</p><p>This is another paragraph.</p></div>
+```
 
 If the `selector` is set to match `div`, by default the resulting text will be:
 
@@ -119,7 +121,7 @@ This is because there is no space character between `</p>` and `<p>`.
 
 With `spaced` set to `true`, the result is:
 
-```This is the first paragraph.This is another paragraph.```
+```This is the first paragraph. This is another paragraph.```
 
 
 ## Development
