@@ -72,6 +72,12 @@ export default `<!doctype html>
         font-size: 1.25em;
       }
 
+      @media (max-width: 360px) {
+        h1 {
+          font-size: 1.15em;
+        }
+      }
+
       h1 + .Button {
         margin-left: auto;
       }
