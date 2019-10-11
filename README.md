@@ -2,7 +2,7 @@
 
 Web Scraper makes it effortless to scrape websites. You provide a URL and CSS selector and it will return you JSON containing the text contents of the matching elements.
 
-- [Website](http://web.scraper.workers.dev)
+[Website →](http://web.scraper.workers.dev)
 
 
 ## Examples
