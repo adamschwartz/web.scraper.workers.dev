@@ -403,9 +403,10 @@ export default `<!doctype html>
       }
 
       async function updatePreview(url) {
+        const pretty = !!form.querySelector('#pretty').checked
         const response = await fetch(url)
         const json = await response.json()
-        jsonPreview.textContent = JSON.stringify(json, null, 2)
+        jsonPreview.textContent = JSON.stringify(json, null, pretty ? 2 : 0)
       }
 
       form.addEventListener('submit', event => {
