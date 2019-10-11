@@ -24,9 +24,9 @@ export default `<!doctype html>
     <meta name="twitter:description" content="A simple web scraper powered by Cloudflare Workers®.">
     <meta name="twitter:url" content="https://web.scraper.workers.dev">
 
-    <link href="https://ui.adam.workers.dev/?components=link,button,input,dialog" rel="stylesheet">
+    <link href="https://ui-v2.adam.workers.dev/?components=link,button,formField,input,checkbox,stack,row,dialog" rel="stylesheet">
     <script>/* focus-visible polyfill */!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e():"function"==typeof define&&define.amd?define(e):e()}(0,function(){"use strict";"undefined"!=typeof document&&function(t){var e;function n(){e||(e=!0,t())}["interactive","complete"].indexOf(document.readyState)>=0?t():(e=!1,document.addEventListener("DOMContentLoaded",n,!1),window.addEventListener("load",n,!1))}(function(){var t=!0,e=!1,n=null,o={text:!0,search:!0,url:!0,tel:!0,email:!0,password:!0,number:!0,date:!0,month:!0,week:!0,time:!0,datetime:!0,"datetime-local":!0};function r(t){return!!(t&&t!==document&&"HTML"!==t.nodeName&&"BODY"!==t.nodeName&&"classList"in t&&"contains"in t.classList)}function i(t){""!==t.getAttribute("is-focus-visible")&&t.setAttribute("is-focus-visible","")}function u(e){t=!1}function c(){document.addEventListener("mousemove",s),document.addEventListener("mousedown",s),document.addEventListener("mouseup",s),document.addEventListener("pointermove",s),document.addEventListener("pointerdown",s),document.addEventListener("pointerup",s),document.addEventListener("touchmove",s),document.addEventListener("touchstart",s),document.addEventListener("touchend",s)}function s(e){"html"!==e.target.nodeName.toLowerCase()&&(t=!1,document.removeEventListener("mousemove",s),document.removeEventListener("mousedown",s),document.removeEventListener("mouseup",s),document.removeEventListener("pointermove",s),document.removeEventListener("pointerdown",s),document.removeEventListener("pointerup",s),document.removeEventListener("touchmove",s),document.removeEventListener("touchstart",s),document.removeEventListener("touchend",s))}document.addEventListener("keydown",function(e){r(document.activeElement)&&i(document.activeElement),t=!0},!0),document.addEventListener("mousedown",u,!0),document.addEventListener("pointerdown",u,!0),document.addEventListener("touchstart",u,!0),document.addEventListener("focus",function(e){var n,u,c;r(e.target)&&(t||(n=e.target,u=n.type,"INPUT"==(c=n.tagName)&&o[u]&&!n.readOnly||"TEXTAREA"==c&&!n.readOnly||n.isContentEditable))&&i(e.target)},!0),document.addEventListener("blur",function(t){var o;r(t.target)&&t.target.hasAttribute("is-focus-visible")&&(e=!0,window.clearTimeout(n),n=window.setTimeout(function(){e=!1,window.clearTimeout(n)},100),""===(o=t.target).getAttribute("is-focus-visible")&&o.removeAttribute("is-focus-visible"))},!0),document.addEventListener("visibilitychange",function(n){"hidden"==document.visibilityState&&(e&&(t=!0),c())},!0),c(),document.documentElement.setAttribute("js-focus-visible-polyfill-available","")})})</script>
-    <script>/* dialog */const Dialog=(()=>{const a=a=>{this.el.contains(a.target)||(this.el.previousElementSibling===a.target?this.el.querySelector("[dialog-close-x]").focus():this.el.querySelector("[dialog-autofocus], [dialog-close]").focus())},b=a=>{"Escape"===a.key&&d()},c=()=>{document.querySelectorAll("[dialog-close]").forEach(a=>{""===a.getAttribute("dialog-close-handled")||(a.setAttribute("dialog-close-handled",""),a.addEventListener("click",b=>{(null===a.getAttribute("dialog-close-self-only")||b.target===a)&&d()}))})},d=()=>{document.documentElement.removeAttribute("is-dialog"),document.removeEventListener("focus",a,!0),document.removeEventListener("keyup",b,!0)};return{init:a=>{this.el=a},open:()=>{document.documentElement.setAttribute("is-dialog",""),document.addEventListener("focus",a,!0),document.addEventListener("keyup",b,!0),c(),this.el.querySelector("[dialog-autofocus], [dialog-close]").focus()},close:d}})();</script>
+    <script>/* dialog */(()=>{const a="[dialog-autofocus], [dialog-close]",b=b=>c=>{b.contains(c.target)||(b.previousElementSibling===c.target?b.querySelector("[dialog-close-x]").focus():b.querySelector(a).focus())},c=a=>b=>{"Escape"===b.key&&a.close()};window.Dialog=class{constructor(a){this.el=a,this.trapFocus=b(a),this.checkForEscape=c(this)}open(){this.originalActiveElement=document.activeElement,document.documentElement.setAttribute("is-dialog",""),document.addEventListener("focus",this.trapFocus,!0),document.addEventListener("keyup",this.checkForEscape,!0),this.setupClosers(),this.el.querySelector(a).focus()}setupClosers(){const a=[];this.el.parentNode.matches("[dialog-close]")&&a.push(this.el.parentNode),this.el.querySelectorAll("[dialog-close]").forEach(b=>a.push(b)),a.forEach(a=>{""===a.getAttribute("dialog-close-handled")||(a.setAttribute("dialog-close-handled",""),a.addEventListener("click",b=>{(null===a.getAttribute("dialog-close-self-only")||b.target===a)&&this.close()}))})}close(){document.documentElement.removeAttribute("is-dialog"),document.removeEventListener("focus",this.trapFocus,!0),document.removeEventListener("keyup",this.checkForEscape,!0),this.originalActiveElement&&this.originalActiveElement.parentNode&&this.originalActiveElement.focus()}}})()</script>
 
     <style>
       html {
@@ -62,10 +62,6 @@ export default `<!doctype html>
         height: 100%;
       }
 
-      .Stack > * + * {
-        margin-top: 1.5em;
-      }
-
       .Surface {
         display: flex;
       }
@@ -92,7 +88,7 @@ export default `<!doctype html>
         border-radius: 50%;
       }
 
-      .Input--label {
+      .FormField--label {
         font-weight: 500;
       }
 
@@ -209,14 +205,6 @@ export default `<!doctype html>
         background: rgba(255, 255, 255, .1);
       }
 
-      .Actions {
-        display: flex;
-      }
-
-      .Actions > * + * {
-        margin-left: 1em;
-      }
-
       .WebScraperLogo > span {
         display: inline-block;
       }
@@ -243,7 +231,7 @@ export default `<!doctype html>
         }
       }
 
-      .Panel--bottom .Actions .Button-is-primary .mobile-only {
+      .Panel--bottom .Button-is-primary .mobile-only {
         display: none;
       }
 
@@ -253,27 +241,14 @@ export default `<!doctype html>
         }
 
         .Preview,
-        .Panel--bottom .Actions .Button-is-primary .desktop-only,
-        .Panel--bottom .Actions .Button-is-bordered {
+        .Panel--bottom .Button-is-primary .desktop-only,
+        .Panel--bottom .Button-is-bordered {
           display: none;
         }
 
-        .Panel--bottom .Actions .Button-is-primary .mobile-only {
+        .Panel--bottom .Button-is-primary .mobile-only {
           display: inline;
         }
-      }
-
-      .Dialog--content pre { /* TODO */
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        font-family: Menlo, monospace;
-        font-size: .9em;
-      }
-
-      .Dialog--content .Link:not(.Link-with-right-arrow) { /* TODO */
-        display: inline-block;
-        --underline-size: 1px;
-        line-height: 1.1;
       }
     </style>
   </head>
@@ -288,20 +263,38 @@ export default `<!doctype html>
 
         <main class="Panel--main" is-smooth-scrolling>
           <form id="form" class="Stack" method="GET" action="https://web.scraper.workers.dev">
-            <div class="Input">
-              <label class="Input--label" for="url">URL</label>
-              <input class="Input--input" id="url" type="text" name="url" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus />
+            <div class="FormField">
+              <div class="FormField--text">
+                <label class="FormField--label" for="url">URL</label>
+              </div>
+              <input class="Input" id="url" type="text" name="url" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus />
             </div>
 
-            <div class="Input">
-              <label class="Input--label" for="selector">Selector</label>
-              <input class="Input--input" id="selector" type="text" name="selector" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <div class="FormField">
+              <div class="FormField--text">
+                <label class="FormField--label" for="selector">Selector</label>
+              </div>
+              <input class="Input" id="selector" type="text" name="selector" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </div>
+
+            <div class="FormField">
+              <div class="Checkbox">
+                <input class="Checkbox--input" type="checkbox" name="spaced" id="spaced"/>
+                <label class="Checkbox--label" for="spaced">Add a space between children of matched nodes</label>
+              </div>
+            </div>
+
+            <div class="FormField">
+              <div class="Checkbox">
+                <input class="Checkbox--input" type="checkbox" name="pretty" id="pretty" checked/>
+                <label class="Checkbox--label" for="pretty">Prettify the JSON output</label>
+              </div>
             </div>
           </form>
         </main>
 
         <div class="Panel--bottom">
-          <div class="Actions">
+          <div class="Row">
             <button class="Button Button-is-primary" type="submit" form="form"><span class="desktop-only">Update preview</span><span class="mobile-only">Scrape</span></button>
             <a data-js-permalink href="https://web.scraper.workers.dev" class="Button Button-is-bordered" type="button">Permalink</a>
           </div>
@@ -325,7 +318,7 @@ export default `<!doctype html>
         </div>
 
         <div class="Dialog--actions">
-          <div class="Actions">
+          <div class="Row">
             <button class="Button Button-is-primary" dialog-close dialog-close-x dialog-autofocus>Done</button>
             <button class="Button Button-is-bordered" dialog-close dialog-close-x dialog-autofocus data-js-fill-example>View example</button>
           </div>
@@ -358,8 +351,8 @@ export default `<!doctype html>
 
       const mobileQuery = window.matchMedia('(max-width: 800px)')
 
-      Dialog.init(document.querySelector('[dialog]'))
-      openDialog.addEventListener('click', Dialog.open)
+      const dialog = new Dialog(document.querySelector('[dialog]'))
+      openDialog.addEventListener('click', () => dialog.open())
 
       fillExample.addEventListener('click', () => {
         const data = {
@@ -391,6 +384,12 @@ export default `<!doctype html>
       let lastPermalink = permalink.href
       const update = () => {
         const data = new FormData(form)
+
+        const booleans = ['pretty', 'spaced']
+        booleans.forEach(b => {
+          if (data.get(b) === 'on') data.set('b', 'true') // TODO
+        })
+
         const queryString = new URLSearchParams(data).toString()
         const url = \`\${ form.action }?\${ queryString }\`
 
