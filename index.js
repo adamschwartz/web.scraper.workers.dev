@@ -98,7 +98,7 @@ async function handleAPIRequest({ url, selector, spaced, pretty }) {
 
   } catch (error) {
     return generateJSONResponse({
-        error: `The selector \`${ selector }\` is invalid or an unknown HTMLRewriter error occured`
+        error: `The selector \`${ selector }\` is invalid or another HTML parsing error occured`
     }, pretty)
   }
 
