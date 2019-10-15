@@ -98,12 +98,12 @@ Web Scraper makes it effortless to scrape websites. You provide a URL and CSS se
 #### `pretty` (optional)
 
   - When `false` or not included, JSON is minified.
-  - When `true`, formats the JSON using `JSON.stringify(json, null, 2)`.
+  - When `true`, JSON is formatted using `JSON.stringify(json, null, 2)`.
 
 #### `spaced` (optional)
 
-  - When `false` or not included, the text nodes of children of the nodes matching selector will be concatenated just as they are.
-  - When `true`, a single space character is added between the end tag of a child.
+  - When `false` or not included, the text nodes of children of the nodes matching `selector` will be concatenated raw.
+  - When `true`, a single space character is added after the end tag of each child node found.
 
 ##### Examples
 
