@@ -72,28 +72,35 @@ async function handleAPIRequest({ url, selector, spaced, pretty }) {
   const matches = {}
   const selectors = selector.split(',').map(s => s.trim())
 
-  selectors.forEach((selector) => {
-    matches[selector] = []
+  try {
+    selectors.forEach((selector) => {
+      matches[selector] = []
 
-    let nextText = ''
+      let nextText = ''
 
-    rewriter.on(selector, {
-      element(element) {
-        matches[selector].push(true)
-        nextText = ''
-      },
-
-      text(text) {
-        nextText += text.text
-
-        if (text.lastInTextNode) {
-          if (spaced) nextText += ' '
-          matches[selector].push(nextText)
+      rewriter.on(selector, {
+        element(element) {
+          matches[selector].push(true)
           nextText = ''
+        },
+
+        text(text) {
+          nextText += text.text
+
+          if (text.lastInTextNode) {
+            if (spaced) nextText += ' '
+            matches[selector].push(nextText)
+            nextText = ''
+          }
         }
-      }
+      })
     })
-  })
+
+  } catch (error) {
+    return generateJSONResponse({
+        error: `The selector \`${ selector }\` is invalid or an unknown HTMLRewriter error occured`
+    }, pretty)
+  }
 
   const transformed = rewriter.transform(response)
 
