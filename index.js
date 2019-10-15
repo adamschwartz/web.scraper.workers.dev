@@ -11,7 +11,10 @@ const formatJSON = (obj, pretty) => JSON.stringify(obj, null, pretty ? 2 : 0)
 
 const generateJSONResponse = (obj, pretty) => {
   return new Response(formatJSON(obj, pretty), {
-    headers: { 'content-type': contentTypes.json }
+    headers: {
+      'content-type': contentTypes.json,
+      'Access-Control-Allow-Origin': '*'
+    }
   })
 }
 
