@@ -430,14 +430,21 @@ export default `<!doctype html>
       })
 
       const events = ['input', 'change']
-      const debouncedUpdateFn = Debounce(update, 380)
+      const debouncedUpdate = Debounce(update, 100)
 
-      document.querySelectorAll('input').forEach(el => {
+      document.querySelectorAll('input[type="text"]').forEach(el => {
         events.forEach(eventName => {
           el.addEventListener(eventName, event => {
             if (mobileQuery.matches) return
-            debouncedUpdateFn()
+            debouncedUpdate()
           })
+        })
+      })
+
+      document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+        el.addEventListener('change', event => {
+          if (mobileQuery.matches) return
+          update()
         })
       })
     </script>
