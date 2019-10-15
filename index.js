@@ -57,7 +57,7 @@ async function handleAPIRequest({ url, selector, spaced, pretty }) {
   const server = response.headers.get('server')
 
   const isThisWorkerErrorNotErrorWithinScrapedSite = (
-    [530, 503, 502, 403].includes(response.status) &&
+    [530, 503, 502, 403, 400].includes(response.status) &&
     (server === 'cloudflare' || !server /* Workers preview editor */)
   )
 
