@@ -280,14 +280,14 @@ export default `<!doctype html>
               <div class="FormField--text">
                 <label class="FormField--label" for="url">URL</label>
               </div>
-              <input class="Input" id="url" type="text" inputmode="url" name="url" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus />
+              <input class="Input" id="url" type="text" inputmode="url" name="url" pattern="(?:(?:https?):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required autofocus />
             </div>
 
             <div class="FormField">
               <div class="FormField--text">
                 <label class="FormField--label" for="selector">Selector</label>
               </div>
-              <input class="Input" id="selector" type="text" name="selector" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <input class="Input" id="selector" type="text" name="selector" pattern="(?:\*|(?:\.?[a-zA-Z0-9_-])+)(?:\[(?:\S.*)=(?:\S.*)\])?(?::\S*)?(?:(?:\s+)?(?:,|>)?(?:\s+)?(?:\*|(?:\.?[a-zA-Z0-9_-])+)(?:\[(?:\S.*)~?\^?=(?:\S.*)\])?(?::\S*)?)*" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required />
             </div>
 
             <div class="FormField">
@@ -447,6 +447,38 @@ export default `<!doctype html>
           update()
         })
       })
+
+      const setURLCustomValidity = () => {
+        if (url.validity.valueMissing) {
+          url.setCustomValidity('Enter the URL you’d like to scrape.')
+        } else if (url.validity.patternMismatch) {
+          url.setCustomValidity('Enter a valid URL.')
+        } else {
+          url.setCustomValidity('')
+        }
+      }
+
+      url.addEventListener('input', event => {
+        setURLCustomValidity()
+      })
+
+      setURLCustomValidity()
+
+      const setSelectorCustomValidity = () => {
+        if (selector.validity.valueMissing) {
+          selector.setCustomValidity('Enter a CSS selector to scrape.')
+        } else if (selector.validity.patternMismatch) {
+          selector.setCustomValidity('Enter a valid CSS selector.')
+        } else {
+          selector.setCustomValidity('')
+        }
+      }
+
+      selector.addEventListener('input', event => {
+        setSelectorCustomValidity()
+      })
+
+      setSelectorCustomValidity()
     </script>
   </body>
 </html>`
