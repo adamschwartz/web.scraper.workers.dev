@@ -267,7 +267,8 @@ export default `<!doctype html>
 
       .Input:not([is-pristine]):not(:focus):invalid {
         --focus-color: rgba(var(--error-color-rgb), .5);
-        --border-color: rgb(var(--error-color-rgb));
+        --border-color: rgba(var(--error-color-rgb), .4);
+        --border-top-color: rgb(var(--error-color-rgb));
       }
 
       .Input:not([is-pristine]):focus:invalid {
