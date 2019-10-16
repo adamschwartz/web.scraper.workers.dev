@@ -280,7 +280,7 @@ export default `<!doctype html>
               <div class="FormField--text">
                 <label class="FormField--label" for="url">URL</label>
               </div>
-              <input class="Input" id="url" type="text" name="url" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus />
+              <input class="Input" id="url" type="text" inputmode="url" name="url" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus />
             </div>
 
             <div class="FormField">
