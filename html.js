@@ -34,6 +34,7 @@ export default `<!doctype html>
         --monospace-font-family: Monaco, monospace;
         --color-rgb: 8, 10, 60;
         --accent-color-rgb: 74, 76, 105;
+        --error-color-rgb: 206, 0, 88;
       }
 
       @media(min-width: 84em) {
@@ -263,6 +264,15 @@ export default `<!doctype html>
         display: inline-block;
         line-height: 1.1;
       }
+
+      .Input:not([is-pristine]):not(:focus):invalid {
+        --focus-color: rgba(var(--error-color-rgb), .5);
+        --border-color: rgb(var(--error-color-rgb));
+      }
+
+      .Input:not([is-pristine]):focus:invalid {
+        color: rgb(var(--error-color-rgb));
+      }
     </style>
   </head>
 
@@ -280,14 +290,14 @@ export default `<!doctype html>
               <div class="FormField--text">
                 <label class="FormField--label" for="url">URL</label>
               </div>
-              <input class="Input" id="url" type="text" inputmode="url" name="url" pattern="(?:(?:https?):\\/\\/)?(?:(?!(?:10|127)(?:\\.\\d{1,3}){3})(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))(?::\\d{2,5})?(?:\\/\\S*)?" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required autofocus />
+              <input class="Input" is-pristine id="url" type="text" inputmode="url" name="url" pattern="(?:(?:https?):\\/\\/)?(?:(?!(?:10|127)(?:\\.\\d{1,3}){3})(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))(?::\\d{2,5})?(?:\\/\\S*)?" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required autofocus />
             </div>
 
             <div class="FormField">
               <div class="FormField--text">
                 <label class="FormField--label" for="selector">Selector</label>
               </div>
-              <input class="Input" id="selector" type="text" name="selector" pattern="(?:\\*|(?:\\.?[a-zA-Z0-9_-])+)(?:\\[(?:\\S.*)=(?:\\S.*)\\])?(?::\\S*)?(?:(?:\\s+)?(?:,|>)?(?:\\s+)?(?:\\*|(?:\\.?[a-zA-Z0-9_-])+)(?:\\[(?:\\S.*)~?\\^?=(?:\\S.*)\\])?(?::\\S*)?)*" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required />
+              <input class="Input" is-pristine id="selector" type="text" name="selector" pattern="(?:\\*|(?:\\.?[a-zA-Z0-9_-])+)(?:\\[(?:\\S.*)=(?:\\S.*)\\])?(?::\\S*)?(?:(?:\\s+)?(?:,|>)?(?:\\s+)?(?:\\*|(?:\\.?[a-zA-Z0-9_-])+)(?:\\[(?:\\S.*)~?\\^?=(?:\\S.*)\\])?(?::\\S*)?)*" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required />
             </div>
 
             <div class="FormField">
@@ -439,6 +449,13 @@ export default `<!doctype html>
             debouncedUpdate()
           })
         })
+
+        const dirty = event => {
+          el.removeEventListener('change', dirty)
+          el.removeAttribute('is-pristine')
+        }
+
+        el.addEventListener('change', dirty)
       })
 
       document.querySelectorAll('input[type="checkbox"]').forEach(el => {
