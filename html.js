@@ -287,7 +287,7 @@ export default `<!doctype html>
               <div class="FormField--text">
                 <label class="FormField--label" for="selector">Selector</label>
               </div>
-              <input class="Input" id="selector" type="text" name="selector" pattern="(?:\*|(?:\.?[a-zA-Z0-9_-])+)(?:\[(?:\S.*)=(?:\S.*)\])?(?::\S*)?(?:(?:\s+)?(?:,|>)?(?:\s+)?(?:\*|(?:\.?[a-zA-Z0-9_-])+)(?:\[(?:\S.*)~?\^?=(?:\S.*)\])?(?::\S*)?)*" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required />
+              <input class="Input" id="selector" type="text" name="selector" pattern="(?:\\*|(?:\\.?[a-zA-Z0-9_-])+)(?:\\[(?:\\S.*)=(?:\\S.*)\\])?(?::\\S*)?(?:(?:\\s+)?(?:,|>)?(?:\\s+)?(?:\\*|(?:\\.?[a-zA-Z0-9_-])+)(?:\\[(?:\\S.*)~?\\^?=(?:\\S.*)\\])?(?::\\S*)?)*" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required />
             </div>
 
             <div class="FormField">
