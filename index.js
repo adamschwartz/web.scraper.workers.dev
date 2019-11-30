@@ -70,7 +70,7 @@ async function handleAPIRequest({ url, selector, spaced, pretty }) {
   const rewriter = new HTMLRewriter()
 
   const matches = {}
-  const selectors = selector.split(',').map(s => s.trim())
+  const selectors = new Set(selector.split(',').map(s => s.trim()))
 
   try {
     selectors.forEach((selector) => {
