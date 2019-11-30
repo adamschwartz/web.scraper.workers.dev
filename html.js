@@ -407,6 +407,7 @@ export default `<!doctype html>
 
       let lastPermalink = permalink.href
       const update = () => {
+        if (form.checkValidity && !form.checkValidity()) return
         const data = new FormData(form)
 
         const booleans = ['pretty', 'spaced']
