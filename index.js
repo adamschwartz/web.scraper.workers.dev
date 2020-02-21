@@ -55,10 +55,11 @@ async function handleAPIRequest({ url, selector, spaced, pretty }) {
   const response = await fetch(url)
 
   const server = response.headers.get('server')
+  const isEditorRequest = typeof request.cf === 'undefined'
 
   const isThisWorkerErrorNotErrorWithinScrapedSite = (
     [530, 503, 502, 403, 400].includes(response.status) &&
-    (server === 'cloudflare' || !server /* Workers preview editor */)
+    (server === 'cloudflare' || isEditorRequest)
   )
 
   if (isThisWorkerErrorNotErrorWithinScrapedSite) {
