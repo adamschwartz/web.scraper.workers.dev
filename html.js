@@ -24,7 +24,7 @@ export default `<!doctype html>
     <meta name="twitter:description" content="A simple web scraper powered by Cloudflare Workers®.">
     <meta name="twitter:url" content="https://web.scraper.workers.dev">
 
-    <link href="https://ui.adam.workers.dev/?components=link,button,formField,input,checkbox,stack,row,dialog" rel="stylesheet">
+    <link href="https://ui.adam.workers.dev/?components=link,button,formField,input,checkbox,radio,stack,row,dialog" rel="stylesheet">
     <script>/* focus-visible polyfill */!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e():"function"==typeof define&&define.amd?define(e):e()}(0,function(){"use strict";"undefined"!=typeof document&&function(t){var e;function n(){e||(e=!0,t())}["interactive","complete"].indexOf(document.readyState)>=0?t():(e=!1,document.addEventListener("DOMContentLoaded",n,!1),window.addEventListener("load",n,!1))}(function(){var t=!0,e=!1,n=null,o={text:!0,search:!0,url:!0,tel:!0,email:!0,password:!0,number:!0,date:!0,month:!0,week:!0,time:!0,datetime:!0,"datetime-local":!0};function r(t){return!!(t&&t!==document&&"HTML"!==t.nodeName&&"BODY"!==t.nodeName&&"classList"in t&&"contains"in t.classList)}function i(t){""!==t.getAttribute("is-focus-visible")&&t.setAttribute("is-focus-visible","")}function u(e){t=!1}function c(){document.addEventListener("mousemove",s),document.addEventListener("mousedown",s),document.addEventListener("mouseup",s),document.addEventListener("pointermove",s),document.addEventListener("pointerdown",s),document.addEventListener("pointerup",s),document.addEventListener("touchmove",s),document.addEventListener("touchstart",s),document.addEventListener("touchend",s)}function s(e){"html"!==e.target.nodeName.toLowerCase()&&(t=!1,document.removeEventListener("mousemove",s),document.removeEventListener("mousedown",s),document.removeEventListener("mouseup",s),document.removeEventListener("pointermove",s),document.removeEventListener("pointerdown",s),document.removeEventListener("pointerup",s),document.removeEventListener("touchmove",s),document.removeEventListener("touchstart",s),document.removeEventListener("touchend",s))}document.addEventListener("keydown",function(e){r(document.activeElement)&&i(document.activeElement),t=!0},!0),document.addEventListener("mousedown",u,!0),document.addEventListener("pointerdown",u,!0),document.addEventListener("touchstart",u,!0),document.addEventListener("focus",function(e){var n,u,c;r(e.target)&&(t||(n=e.target,u=n.type,"INPUT"==(c=n.tagName)&&o[u]&&!n.readOnly||"TEXTAREA"==c&&!n.readOnly||n.isContentEditable))&&i(e.target)},!0),document.addEventListener("blur",function(t){var o;r(t.target)&&t.target.hasAttribute("is-focus-visible")&&(e=!0,window.clearTimeout(n),n=window.setTimeout(function(){e=!1,window.clearTimeout(n)},100),""===(o=t.target).getAttribute("is-focus-visible")&&o.removeAttribute("is-focus-visible"))},!0),document.addEventListener("visibilitychange",function(n){"hidden"==document.visibilityState&&(e&&(t=!0),c())},!0),c(),document.documentElement.setAttribute("js-focus-visible-polyfill-available","")})})</script>
     <script>/* dialog */(()=>{const a="[dialog-autofocus], [dialog-close]",b=b=>c=>{b.contains(c.target)||(b.previousElementSibling===c.target?b.querySelector("[dialog-close-x]").focus():b.querySelector(a).focus())},c=a=>b=>{"Escape"===b.key&&a.close()};window.Dialog=class{constructor(a){this.el=a,this.trapFocus=b(a),this.checkForEscape=c(this)}open(){this.originalActiveElement=document.activeElement,document.documentElement.setAttribute("is-dialog",""),document.addEventListener("focus",this.trapFocus,!0),document.addEventListener("keyup",this.checkForEscape,!0),this.setupClosers(),this.el.querySelector(a).focus()}setupClosers(){const a=[];this.el.parentNode.matches("[dialog-close]")&&a.push(this.el.parentNode),this.el.querySelectorAll("[dialog-close]").forEach(b=>a.push(b)),a.forEach(a=>{""===a.getAttribute("dialog-close-handled")||(a.setAttribute("dialog-close-handled",""),a.addEventListener("click",b=>{(null===a.getAttribute("dialog-close-self-only")||b.target===a)&&this.close()}))})}close(){document.documentElement.removeAttribute("is-dialog"),document.removeEventListener("focus",this.trapFocus,!0),document.removeEventListener("keyup",this.checkForEscape,!0),this.originalActiveElement&&this.originalActiveElement.parentNode&&this.originalActiveElement.focus()}}})()</script>
 
@@ -41,6 +41,10 @@ export default `<!doctype html>
         body {
           font-size: 1.2em;
         }
+      }
+
+      [is-hidden] {
+        display: none;
       }
 
       a {
@@ -302,10 +306,30 @@ export default `<!doctype html>
             </div>
 
             <div class="FormField">
+              <div class="Radio---list">
+                <div class="Radio">
+                  <input class="Radio--input" type="radio" name="scrape" id="scrape-text" value="text" checked/>
+                  <label class="Radio--label" for="scrape-text">Scrape the text contents of matched nodes</label>
+                </div>
+                <div class="Radio">
+                  <input class="Radio--input" type="radio" name="scrape" id="scrape-attr" value="attr"/>
+                  <label class="Radio--label" for="scrape-attr">Scrape an attribute from the last matched node</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="FormField" show-if-scrape="text">
               <div class="Checkbox">
                 <input class="Checkbox--input" type="checkbox" name="spaced" id="spaced"/>
                 <label class="Checkbox--label" for="spaced">Add a space between children of matched nodes</label>
               </div>
+            </div>
+
+            <div class="FormField" show-if-scrape="attr" is-hidden>
+              <div class="FormField--text">
+                <label class="FormField--label" for="selector">Attribute</label>
+              </div>
+              <input class="Input" is-pristine id="attr" type="text" name="attr" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
             </div>
 
             <div class="FormField">
@@ -415,6 +439,10 @@ export default `<!doctype html>
           if (data.get(b) === 'on') data.set(b, 'true')
         })
 
+        if (data.get('scrape') !== 'attr') {
+          data.delete('attr')
+        }
+
         const queryString = new URLSearchParams(data).toString()
         const url = \`\${ form.action }?\${ queryString }\`
 
@@ -460,8 +488,21 @@ export default `<!doctype html>
         el.addEventListener('change', dirty)
       })
 
-      document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+      const handleScrapeRadioUpdate = () => {
+        document.querySelectorAll('[show-if-scrape]').forEach(el => {
+          const scrapeValue = document.querySelector('input[name="scrape"]:checked').value
+
+          if (el.getAttribute('show-if-scrape') === scrapeValue) {
+            el.removeAttribute('is-hidden')
+          } else {
+            el.setAttribute('is-hidden', '')
+          }
+        })
+      }
+
+      document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => {
         el.addEventListener('change', event => {
+          handleScrapeRadioUpdate()
           if (mobileQuery.matches) return
           update()
         })
