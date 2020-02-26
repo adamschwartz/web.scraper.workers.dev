@@ -58,7 +58,7 @@ class Scraper {
 
     const transformed = this.rewriter.transform(this.response)
 
-    await transformed.text()
+    await transformed.arrayBuffer()
 
     selectors.forEach((selector) => {
       const nodeCompleteTexts = []
@@ -99,7 +99,7 @@ class Scraper {
 
     const scraper = new AttributeScraper(attribute)
 
-    await new HTMLRewriter().on(this.selector, scraper).transform(this.response).text()
+    await new HTMLRewriter().on(this.selector, scraper).transform(this.response).arrayBuffer()
 
     return scraper.value || ''
   }
