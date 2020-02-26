@@ -91,6 +91,8 @@ class Scraper {
       }
 
       element(element) {
+        if (this.value) return
+
         this.value = element.getAttribute(this.attr)
       }
     }
