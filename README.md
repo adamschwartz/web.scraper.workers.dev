@@ -70,7 +70,7 @@ Web Scraper makes it effortless to scrape websites. You provide a URL and CSS se
 
 If at least `url` and `selector` are set, the response value will always be JSON.
 
-If only one node is found on the page matching the `selector`, the result will be a string. If more than one node is found, the result will an array of strings.
+If only one node is found on the page matching the `selector`, the result will be a string. If more than one node is found, the result will be an array of strings.
 
 If an `attr` is provided, the result will be a string matching only the first node found which has a non-empty value for that HTML attribute.
 
