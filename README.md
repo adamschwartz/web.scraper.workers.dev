@@ -1,6 +1,6 @@
 # Web Scraper
 
-Web Scraper makes it effortless to scrape websites. You provide a URL and CSS selector and it will return you JSON containing the text contents of the matching elements.
+Web Scraper makes it effortless to scrape websites. You provide a URL and CSS selector and it will return you JSON containing the text contents of the matching elements. You can also scrape HTML attribute values by optionally specifying an attribute name.
 
 [Website →](http://web.scraper.workers.dev)
 
@@ -57,13 +57,22 @@ Web Scraper makes it effortless to scrape websites. You provide a URL and CSS se
 
   - Requests are made as `GET` against `http://web.scraper.workers.dev`.
   - There are <strong>two required</strong> query params, `url` and `selector`.
-  - There are two optional query params, `pretty` and `spaced`.
+  - There are three optional query params, `attr`, `pretty` and `spaced`.
 
 <pre><code>http://web.scraper.workers.dev
   ?<strong>url</strong>=https://example.com
   &<strong>selector</strong>=p
+  &<strong>attr</strong>=title
   &<strong>pretty</strong>=true
   &<strong>spaced</strong>=true</code></pre>
+
+### How it works
+
+If at least `url` and `selector` are set, the response value will always be JSON.
+
+If only one node is found on the page matching the `selector`, the result will be a string. If more than one node is found, the result will an array of strings.
+
+If an `attr` is provided, the result will be a string matching only the first node found which has a non-empty value for that HTML attribute.
 
 ### Query params
 
@@ -94,6 +103,11 @@ Web Scraper makes it effortless to scrape websites. You provide a URL and CSS se
       - `E F` – an F element descendant of an E element
       - `E > F` – an F element child of an E element
   - Supports multiple selectors delimited with a comma.
+
+#### `attr` (optional)
+
+  - When `attr` is not set, the text contents of all matched nodes are returned.
+  - When `attr` is set, that HTML attribute is scraped from the first matching node with a non-empty value for that attribute.
 
 #### `pretty` (optional)
 
