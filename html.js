@@ -404,7 +404,7 @@ export default `<!doctype html>
 
       fillExample.addEventListener('click', () => {
         const data = {
-          url: 'https://example.com',
+          url: 'example.com',
           selector: 'h1'
         }
 
@@ -425,6 +425,9 @@ export default `<!doctype html>
           const fieldEl = getFieldEl(property)
           if (fieldEl) fieldEl.value = data[property]
         }
+
+        setURLCustomValidity()
+        setSelectorCustomValidity()
 
         update()
       })
@@ -469,11 +472,11 @@ export default `<!doctype html>
         update()
       })
 
-      const events = ['input', 'change']
+      const formInputChangeEvents = ['input', 'change']
       const debouncedUpdate = Debounce(update, 100)
 
       document.querySelectorAll('input[type="text"]').forEach(el => {
-        events.forEach(eventName => {
+        formInputChangeEvents.forEach(eventName => {
           el.addEventListener(eventName, event => {
             if (mobileQuery.matches) return
             debouncedUpdate()
@@ -518,8 +521,10 @@ export default `<!doctype html>
         }
       }
 
-      url.addEventListener('input', event => {
-        setURLCustomValidity()
+      formInputChangeEvents.forEach(eventName => {
+        url.addEventListener(eventName, event => {
+          setURLCustomValidity()
+        })
       })
 
       setURLCustomValidity()
@@ -534,8 +539,10 @@ export default `<!doctype html>
         }
       }
 
-      selector.addEventListener('input', event => {
-        setSelectorCustomValidity()
+      formInputChangeEvents.forEach(eventName => {
+        selector.addEventListener(eventName, event => {
+          setSelectorCustomValidity()
+        })
       })
 
       setSelectorCustomValidity()
