@@ -355,7 +355,7 @@ export default `<!doctype html>
 
     <div class="Dialog---backdrop" dialog-backdrop>
       <div tabindex="0"></div>
-      <div class="Dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+      <div class="Dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" dialog>
         <h2 class="Dialog--title" id="dialog-title">About</h2>
 
         <div class="Dialog--content">
