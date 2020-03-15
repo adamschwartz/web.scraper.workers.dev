@@ -353,9 +353,9 @@ export default `<!doctype html>
       </figure>
     </div>
 
-    <div class="Dialog---backdrop" dialog-close dialog-close-self-only>
+    <div class="Dialog---backdrop" dialog-backdrop>
       <div tabindex="0"></div>
-      <div class="Dialog" role="dialog" aria-labelledby="dialog-title" dialog>
+      <div class="Dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
         <h2 class="Dialog--title" id="dialog-title">About</h2>
 
         <div class="Dialog--content">
@@ -366,8 +366,8 @@ export default `<!doctype html>
 
         <div class="Dialog--actions">
           <div class="Row">
-            <button class="Button Button-is-primary" dialog-close dialog-close-x dialog-autofocus>Done</button>
-            <button class="Button Button-is-bordered" dialog-close dialog-close-x dialog-autofocus data-js-fill-example>View example</button>
+            <button class="Button Button-is-primary" dialog-close dialog-autofocus>Done</button>
+            <button class="Button Button-is-bordered" dialog-close data-js-fill-example>View example</button>
           </div>
         </div>
 
