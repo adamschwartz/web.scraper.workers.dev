@@ -272,6 +272,10 @@ export default `<!doctype html>
         line-height: 1.1;
       }
 
+      .Radio--input:checked + .Radio--label::after {
+        background-size: 65%;
+      }
+
       .Input:not([is-pristine]):not(:focus):invalid {
         --focus-color: rgba(var(--error-color-rgb), .5);
         --border-color: rgba(var(--error-color-rgb), .4);
