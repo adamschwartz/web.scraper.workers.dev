@@ -261,6 +261,10 @@ export default `<!doctype html>
         }
       }
 
+      .Dialog {
+        width: 30em;
+      }
+
       .Dialog--content .Link {
         --underline-size: 1px;
         --underline-color: rgba(var(--accent-color-rgb), .7);
