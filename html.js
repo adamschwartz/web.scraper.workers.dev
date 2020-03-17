@@ -261,10 +261,6 @@ export default `<!doctype html>
         }
       }
 
-      .Dialog {
-        width: 30em;
-      }
-
       .Dialog--content .Link {
         --underline-size: 1px;
         --underline-color: rgba(var(--accent-color-rgb), .7);
@@ -363,7 +359,7 @@ export default `<!doctype html>
 
     <div class="Dialog---backdrop" dialog-backdrop>
       <div tabindex="0"></div>
-      <div class="Dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" dialog>
+      <div class="Dialog Dialog-is-medium" role="dialog" aria-modal="true" aria-labelledby="dialog-title" dialog>
         <h2 class="Dialog--title" id="dialog-title">About</h2>
 
         <div class="Dialog--content">
