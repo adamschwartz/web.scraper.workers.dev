@@ -90,10 +90,11 @@ export default `<!doctype html>
         margin: -.5em 0;
         padding: 0;
         font-size: 1.1em;
+        font-size: 1.0625em;
         font-weight: bold;
         text-align: center;
-        width: 1.75em;
-        height: 1.75em;
+        width: 1.76470588236em;
+        height: 1.76470588236em;
         line-height: 1.9;
         border-radius: 50%;
       }
