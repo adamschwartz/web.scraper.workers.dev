@@ -141,7 +141,7 @@ With `spaced` set to `true`, the result is:
 
 ## Development
 
-Web Scraper is powered by [Cloudflare Workers](https://workers.cloudflare.com), heavilly utilizing [HTMLRewriter](https://developers.cloudflare.com/workers/reference/apis/html-rewriter/) for parsing the HTML and scraping the text.
+Web Scraper is powered by [Cloudflare Workers](https://workers.cloudflare.com), heavily utilizing [HTMLRewriter](https://developers.cloudflare.com/workers/reference/apis/html-rewriter/) for parsing the HTML and scraping the text.
 
 To develop Web Scraper locally, pull down the repo, and follow these steps:
 
@@ -162,7 +162,7 @@ This will open up the Workers preview experience so you can test and debug the s
 
 ## Deploying
 
-Web Scraper is deployed automatically when changes are pushed to master using a [Github Action](https://github.com/features/actions) and the [Workers CLI](https://github.com/cloudflare/wrangler).
+Web Scraper is deployed automatically when changes are pushed to master using a [GitHub Action](https://github.com/features/actions) and the [Workers CLI](https://github.com/cloudflare/wrangler).
 
 
 ## Author
