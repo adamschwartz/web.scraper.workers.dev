@@ -1,0 +1,12 @@
+# markdownlint-cli npm package
+# https://www.npmjs.com/package/markdownlint-cli
+# print
+# markdownlint '**/*.md' --ignore node_modules
+# fix basic errors
+# markdownlint '**/*.md' --ignore node_modules --fix
+MD007: false
+MD013: false
+MD024: false
+MD029: false
+MD033: false
+MD034: false

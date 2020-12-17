@@ -2,7 +2,7 @@
 
 Web Scraper makes it effortless to scrape websites. You provide a URL and CSS selector and it will return you JSON containing the text contents of the matching elements. You can also scrape HTML attribute values by optionally specifying an attribute name.
 
-[Website →](http://web.scraper.workers.dev)
+[Website →](https://web.scraper.workers.dev)
 
 [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/adamschwartz/web.scraper.workers.dev)
 
@@ -53,14 +53,13 @@ Web Scraper makes it effortless to scrape websites. You provide a URL and CSS se
 }
 ```
 
-
 ## API
 
-  - Requests are made as `GET` against `http://web.scraper.workers.dev`.
+  - Requests are made as `GET` against `https://web.scraper.workers.dev`.
   - There are <strong>two required</strong> query params, `url` and `selector`.
   - There are three optional query params, `attr`, `pretty` and `spaced`.
 
-<pre><code>http://web.scraper.workers.dev
+<pre><code>https://web.scraper.workers.dev
   ?<strong>url</strong>=https://example.com
   &<strong>selector</strong>=p
   &<strong>attr</strong>=title
@@ -124,7 +123,7 @@ If an `attr` is provided, the result will be a string matching only the first no
 
 Consider the following DOM structure:
 
-```
+```html
 <div><p>This is the first paragraph.</p><p>This is another paragraph.</p></div>
 ```
 
@@ -138,7 +137,6 @@ With `spaced` set to `true`, the result is:
 
 ```This is the first paragraph. This is another paragraph.```
 
-
 ## Development
 
 Web Scraper is powered by [Cloudflare Workers](https://workers.cloudflare.com), heavily utilizing [HTMLRewriter](https://developers.cloudflare.com/workers/reference/apis/html-rewriter/) for parsing the HTML and scraping the text.
@@ -147,23 +145,21 @@ To develop Web Scraper locally, pull down the repo, and follow these steps:
 
 1. Installing the Workers CLI globally.
 
-```
+```shell
 npm i @cloudflare/wrangler@1.4.0-rc.7 -g
 ```
 
 2. Run the preview/watcher inside the repo:
 
-```
+```shell
 wrangler preview --watch
 ```
 
-This will open up the Workers preview experience so you can test and debug the site. The main source can be found in `index.js`. As you make changes you’ll see them live in the previewer.
-
+This will open up the Workers preview experience, so you can test and debug the site. The main source can be found in `index.js`. As you make changes you’ll see them live in the previewer.
 
 ## Deploying
 
 Web Scraper is deployed automatically when changes are pushed to master using a [GitHub Action](https://github.com/features/actions) and the [Workers CLI](https://github.com/cloudflare/wrangler).
-
 
 ## Author
 
