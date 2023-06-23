@@ -10,17 +10,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Navigate to repo
-      run: cd $GITHUB_WORKSPACE
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-    - name: Install deps
-      run: npm install
+    - uses: actions/checkout@v3
     - name: Publish
-      uses: cloudflare/wrangler-action@1.2.0
+      uses: cloudflare/wrangler-action@2.0.0
       with:
         apiToken: ${{ secrets.CF_API_TOKEN }}
-      env:
-        CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
