@@ -81,7 +81,7 @@ class Scraper {
       matches[selector] = nodeCompleteTexts
     })
 
-    return selectors.length === 1 ? matches[selectors[0]] : matches
+    return selectors.size === 1 ? matches[selectors[0]] : matches
   }
 
   async getAttribute(attribute) {
