@@ -6,6 +6,40 @@ Web Scraper makes it effortless to scrape websites. You provide a URL and CSS se
 
 [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/adamschwartz/web.scraper.workers.dev)
 
+# Getting Started
+Welcome to the Web Scraper project! Here’s everything you need to know to start:
+
+# Prerequisites
+- Ensure you have Node.js installed as Web Scraper is built on JavaScript. Download it from Node.js official website: https://nodejs.org/.
+
+# Installation & Setup
+1. Clone the Web Scraper Repository:
+git clone https://github.com/your-web-scraper-repo/web.scraper.workers.dev.git
+cd web.scraper.workers.dev
+
+2. Install Dependencies:
+   Run `npm install` to install the necessary dependencies.
+
+Running Your First Scrape
+Follow these steps to perform a basic scrape:
+
+1. Identify Target & Selector:
+   - Choose a webpage you wish to scrape. For this example, we'll use `http://example.com`.
+   - Determine the CSS selector of the content you want to scrape. For `http://example.com`, we'll scrape the main heading (`<h1>`).
+
+2. Execute the Scrape:
+   Use the provided script or command, replacing `<url>` and `<selector>` with your targets:
+node scrape.js --url "http://example.com" --selector "h1"
+
+# Troubleshooting Guide
+Encounter an issue? Here’s how to solve some common problems:
+
+Problem: Scrape returns empty data.
+Solution: Verify the CSS selector matches the element on the updated webpage.
+
+Problem: Installation fails.
+Solution: Ensure Node.js is correctly installed and your network permissions allow npm installations.
+
 ## Examples
 
 ### Heading from example.com
